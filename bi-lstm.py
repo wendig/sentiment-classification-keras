@@ -4,6 +4,7 @@ from keras.models import Sequential
 from keras.layers import Dense, Embedding, BatchNormalization, Dropout
 from keras.layers import LSTM, Bidirectional
 from keras.datasets import imdb
+from keras.callbacks import ModelCheckpoint
 import numpy as np
 
 max_features = 20000
@@ -45,11 +46,18 @@ model.compile(loss='binary_crossentropy',
               optimizer='adam',
               metrics=['accuracy'])
 
+# checkpoint
+filepath="weights-improvement-{epoch:02d}-{val_acc:.2f}.hdf5"
+checkpoint = ModelCheckpoint(filepath, monitor='val_acc', verbose=1, save_best_only=True, mode='max')
+callbacks_list = [checkpoint]
+
+
 print('Train...')
 model.fit(x_train, y_train,
           batch_size=batch_size,
           epochs=15,
-          validation_data=(x_test, y_test))
+          validation_data=(x_test, y_test),
+          callbacks=callbacks_list)
 
 score, acc = model.evaluate(x_test, y_test,
                             batch_size=batch_size)
@@ -57,19 +65,5 @@ print('Test score:', score)
 print('Test accuracy:', acc)
 
 
-#==============================================================================
-# 2. model
-# model.add(Embedding(max_features, 128))
-# model.add(Convolution1D(64, 3, border_mode='same'))
-# model.add(Convolution1D(32, 3, border_mode='same'))
-# model.add(Convolution1D(16, 3, border_mode='same'))
-# model.add(Flatten())
-# model.add(Dropout(0.2))
-# model.add(Dense(180,activation='sigmoid'))
-# model.add(Dropout(0.2))
-# model.add(Dense(1,activation='sigmoid'))
-# model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-# 
-#==============================================================================
 
 

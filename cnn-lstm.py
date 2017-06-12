@@ -97,3 +97,17 @@ score, acc = model.evaluate(x_test, y_test, batch_size=batch_size)
 print('Test score:', score)
 print('Test accuracy:', acc)
         
+#==============================================================================
+# 2. model
+# model.add(Embedding(max_features, 128))
+# model.add(Convolution1D(64, 3, border_mode='same'))
+# model.add(Convolution1D(32, 3, border_mode='same'))
+# model.add(Convolution1D(16, 3, border_mode='same'))
+# model.add(Flatten())
+# model.add(Dropout(0.2))
+# model.add(Dense(180,activation='sigmoid'))
+# model.add(Dropout(0.2))
+# model.add(Dense(1,activation='sigmoid'))
+# model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+# 
+#==============================================================================
