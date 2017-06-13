@@ -80,9 +80,7 @@ model.add(AtrousConvolution1D(filters,
 model.add(MaxPooling1D(pool_size=pool_size))
 model.add(Bidirectional(LSTM(lstm_output_size)))
 
-
 model.add(Dense(2, activation='sigmoid'))
-
 
 model.compile(loss='binary_crossentropy',
               optimizer='adam',
