@@ -7,7 +7,7 @@ from __future__ import print_function
 from keras.preprocessing import sequence
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation
-from keras.layers import Embedding
+from keras.layers import Embedding, Bidirectional
 from keras.layers import LSTM, AtrousConvolution1D
 from keras.layers import Conv1D, MaxPooling1D
 from keras.datasets import imdb
@@ -69,7 +69,7 @@ model.add(AtrousConvolution1D(filters,
                  activation='relu',
                  strides=1))
 model.add(MaxPooling1D(pool_size=pool_size))
-model.add(LSTM(lstm_output_size,return_sequences=True))
+model.add(Bidirectional(LSTM(lstm_output_size,return_sequences=True)))
 
 model.add(Dropout(0.6))
 model.add(AtrousConvolution1D(filters,
@@ -78,7 +78,7 @@ model.add(AtrousConvolution1D(filters,
                  activation='relu',
                  strides=1))
 model.add(MaxPooling1D(pool_size=pool_size))
-model.add(LSTM(lstm_output_size))
+model.add(Bidirectional(LSTM(lstm_output_size)))
 
 
 model.add(Dense(2, activation='sigmoid'))
