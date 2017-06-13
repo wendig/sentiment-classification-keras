@@ -55,9 +55,11 @@ callbacks_list = [checkpoint]
 print('Train...')
 model.fit(x_train, y_train,
           batch_size=batch_size,
-          epochs=15,
+          epochs=3,
           validation_data=(x_test, y_test),
-          callbacks=callbacks_list)
+          callbacks=callbacks_list,
+          verbose = 0
+          )
 
 score, acc = model.evaluate(x_test, y_test,
                             batch_size=batch_size)
